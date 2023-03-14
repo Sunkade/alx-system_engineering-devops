@@ -1,2 +1,2 @@
-#!/bin/bas
-find . -empty | rev | cut -d '/' -f l | rev
+#!/bin/bash
+find . -empty | rev | cut -d '/' -f 1 | rev
