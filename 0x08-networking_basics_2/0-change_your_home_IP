@@ -10,5 +10,5 @@ sudo sed -i 's/facebook.com/8.8.8.8/' /etc/hosts
 # Output success message
 echo "localhost and facebook.com have been configured. Don't forget to revert changes later."
 
-# Restart networking to apply changes
-sudo systemctl restart networking
+# Restart networking (alternative approach)
+sudo /etc/init.d/networking restart
