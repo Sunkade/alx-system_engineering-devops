@@ -1,4 +1,13 @@
-#Kills a process named killmenow
-exec{'pkill -f killmenow':
-path  => '/usr/bin/:/usr/local/bin/:/bin/'
+class { 'python':
+  version => 'system',
+}
+
+package { 'python3-pip':
+  ensure => installed,
+}
+
+package { 'Flask':
+  ensure   => '2.1.0',
+  provider => 'pip',
+  require  => Package['python3-pip'],
 }
