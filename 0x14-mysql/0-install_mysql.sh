@@ -3,6 +3,7 @@
 # Add MySQL APT repository
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb
 sudo dpkg -i mysql-apt-config_0.8.16-1_all.deb
+echo "mysql-apt-config mysql-apt-config/select-server select mysql-5.7" | sudo debconf-set-selections
 sudo apt-get update
 
 # Install MySQL 5.7
