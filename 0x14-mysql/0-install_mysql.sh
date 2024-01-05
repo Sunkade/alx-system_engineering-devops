@@ -1,11 +1,15 @@
-#!/usr/bin/env bash
-# 0-install_mysql.sh
+#!/bin/bash
 
-# Update the package list
+# Add MySQL APT repository
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.16-1_all.deb
 sudo apt-get update
 
-# Install MySQL Server 5.7
-sudo apt-get install -y mysql-server-5.7
+# Install MySQL 5.7
+sudo apt-get install -y mysql-server=5.7.42-1ubuntu18.04
 
-# Output the MySQL version to verify installation
-mysql --version
+# Remove the MySQL APT repository configuration file
+sudo rm /etc/apt/sources.list.d/mysql.list
+
+# Restart MySQL service
+sudo service mysql restart
