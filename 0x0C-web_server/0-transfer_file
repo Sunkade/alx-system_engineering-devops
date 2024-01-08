@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # Check if the number of parameters is less than 4
-if [ "$#" -lt 4 ]; then
+if [ "$#" -lt 4 ]
+then
     echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
     exit 1
 fi
 
 # Assign parameters to variables
+
 path_file_path=$1
 ip=$2
 username=$3
@@ -15,7 +17,7 @@ path_to_ssh_key_path=$4
 # Disable strict host key checking for checking
 
 
-scp -o StrictHostKeyChecking=no -i "$path_ssh_key_path" "$path_to_file_" "$username@$ip:~/"
+scp -o "StrictHostKeyChecking=no" -i "$path_ssh_key_path" "$path_to_file_" "$username@$ip:~/"
 
 # Check if the scp command was successful
 if [ "$?" -eq 0 ] 
