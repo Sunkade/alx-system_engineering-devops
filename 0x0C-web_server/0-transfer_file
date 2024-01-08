@@ -7,16 +7,15 @@ if [ "$#" -lt 4 ]; then
 fi
 
 # Assign parameters to variables
-file_path=$1
-server_ip=$2
+path_file_path=$1
+ip=$2
 username=$3
-ssh_key_path=$4
+path_to_ssh_key_path=$4
 
-# Disable strict host key checking for scp
-export SSHPASS="yes"
+# Disable strict host key checking for checking
 
-# Transfer the file using scp
-scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$username"@"$server_ip":~/
+
+scp -o StrictHostKeyChecking=no -i "$path_ssh_key_path" "$path_to_file_" "$username@$ip:~/"
 
 # Check if the scp command was successful
 if [ "$?" -eq 0 ]; then
