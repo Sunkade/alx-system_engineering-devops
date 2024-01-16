@@ -1,33 +1,28 @@
 #!/usr/bin/python3
-"""
-0-subs
-"""
+'''
+    this module contains the function number_of_subscribers
+'''
 import requests
+from sys import argv
+
 
 def number_of_subscribers(subreddit):
-    """
-    Queries the Reddit API and returns the number of subscribers for a given subreddit.
-
-    :param subreddit: The subreddit to query.
-    :return: Number of subscribers or 0 if not a valid subreddit.
-    """
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
-
-    response = requests.get(url, headers=headers, allow_redirects=False)
-
-    if response.status_code == 200:
-        data = response.json()
-        subscribers_count = data['data']['subscribers']
-        return subscribers_count
-    else:
+    '''
+        returns the number of subscribers for a given subreddit
+    '''
+    user = {'User-Agent': 'Lizzie'}
+    url = requests.get('https://www.reddit.com/r/{}/about.json'
+                       .format(subreddit), headers=user).json()
+    try:
+        return url.get('data').get('subscribers')
+    except Exception:
         return 0
 
-if __name__ == '__main__':
-    import sys
 
-    if len(sys.argv) < 2:
+if __name__ == "__main__":
+    # Check if the correct number of command-line arguments is provided
+    if len(argv) < 2:
         print("Please pass an argument for the subreddit to search.")
     else:
-        result = number_of_subscribers(sys.argv[1])
+        result = number_of_subscribers(argv[1])
         print(result)
